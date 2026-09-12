@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Untuk Iyell 🤍</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+  :root{
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* ---- Spotify-inspired dark palette ---- */
+    --bg: #0A0A0A;
+    --bg-elevated: #181818;
+    --bg-elevated-hover: #242424;
+    --text: #FFFFFF;
+    --text-subdued: #A7A7A7;
+    --divider: rgba(255,255,255,0.08);
+    --green: #1ED760;
+    --green-dark: #1AA34A;
+
+    /* ---- "Weekend Wrapped" recap gradient — satu-satunya momen berani di halaman ini ---- */
+    --wrapped-1: #6C2BD9;
+    --wrapped-2: #F0426B;
+    --wrapped-3: #FFB648;
+
+    --blurple: #5865F2;
+    --blurple-dark: #4752C4;
+
+    --player-h: 64px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html, body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:'Poppins', sans-serif;
+    background:var(--bg);
+    color:var(--text);
+  }
+
+  ::selection{ background:var(--green); color:#0A0A0A; }
+
+  /* ================= HERO / CURSOR REVEAL ================= */
+
+  .stage{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    height:100dvh;
+    overflow:hidden;
+  }
+
+  .layer{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:flex-end;
+    justify-content:flex-start;
+    text-align:left;
+    padding:0 32px calc(var(--player-h) + 56px);
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+  }
+
+  .layer::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 55%, rgba(10,10,10,0.95) 100%);
+    pointer-events:none;
+  }
+
+  .layer--bottom{ background-image:url('foto-hero-santai.jpg'); }
+  .layer--top{
+    background-image:url('foto-hero-dekat.jpg');
+    will-change: mask-image, -webkit-mask-image;
+    mask-repeat:no-repeat;
+    -webkit-mask-repeat:no-repeat;
+  }
+
+  .content{
+    position:relative;
+    z-index:2;
+    max-width:640px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:14px;
+  }
+
+  .eyebrow{
+    font-family:'Poppins', sans-serif;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--green);
+  }
+
+  h1{
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    font-size:clamp(2.4rem, 9vw, 5.4rem);
+    line-height:1.02;
+    letter-spacing:-0.02em;
+  }
+
+  .subheading{
+    font-size:clamp(0.95rem, 1.6vw, 1.05rem);
+    font-weight:500;
+    line-height:1.55;
+    max-width:460px;
+    color:var(--text-subdued);
+  }
+
+  .stat-line{
+    font-size:13px;
+    font-weight:600;
+    color:var(--text-subdued);
+    margin-top:2px;
+  }
+  .stat-line strong{ color:var(--text); }
+
+  .cta-row{
+    margin-top:12px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+
+  .cta{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:none;
+    background:var(--green);
+    color:#0A0A0A;
+    cursor:pointer;
+    box-shadow:0 10px 24px -6px rgba(30,215,96,0.55);
+    transition: transform 200ms var(--ease), background 200ms var(--ease), box-shadow 200ms var(--ease);
+    flex-shrink:0;
+  }
+  .cta svg{ width:22px; height:22px; margin-left:3px; }
+  .cta:hover{
+    transform:scale(1.06);
+    background:#22e065;
+    box-shadow:0 14px 30px -6px rgba(30,215,96,0.7);
+  }
+  .cta:active{ transform:scale(0.98); }
+  .cta:focus-visible{
+    outline:2px solid #fff;
+    outline-offset:3px;
+  }
+
+  .cta-label{
+    font-family:'Quicksand', sans-serif;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:0.01em;
+  }
+
+  .hint{
+    position:fixed;
+    left:50%;
+    bottom:calc(var(--player-h) + 20px);
+    transform:translateX(-50%);
+    z-index:5;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 15px;
+    border-radius:999px;
+    background:rgba(24,24,24,0.75);
+    border:1px solid var(--divider);
+    color:var(--text-subdued);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    backdrop-filter:blur(6px);
+    pointer-events:none;
+    opacity:1;
+    transition: opacity 600ms ease;
+  }
+  .hint.is-hidden{ opacity:0; }
+  .hint svg{ width:13px; height:13px; }
+
+  .easter-egg{
+    position:absolute;
+    bottom:calc(var(--player-h) + 14px);
+    right:20px;
+    z-index:1;
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:0.03em;
+    color:rgba(255,255,255,0.45);
+    pointer-events:none;
+    user-select:none;
+  }
+
+  @media (max-width:640px){
+    .layer{ padding:0 20px calc(var(--player-h) + 48px); }
+    .subheading{ font-size:0.9rem; }
+    .easter-egg{ font-size:9.5px; right:14px; }
+  }
+
+  @media (max-width:400px){
+    .layer{ padding-bottom: calc(var(--player-h) + 32px); }
+    h1{ font-size: clamp(1.9rem, 11vw, 2.6rem); }
+  }
+
+  /* ================= PERSISTENT MINI PLAYER BAR ================= */
+
+  .player-bar{
+    position:fixed;
+    left:0; right:0; bottom:0;
+    z-index:50;
+    height:var(--player-h);
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:0 16px;
+    background:var(--bg-elevated);
+    border-top:1px solid var(--divider);
+  }
+
+  .player-track{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-width:0;
+    flex:1 1 auto;
+  }
+  .player-art{
+    width:42px;
+    height:42px;
+    border-radius:6px;
+    object-fit:cover;
+    background:#222;
+    flex-shrink:0;
+  }
+  .player-meta{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    min-width:0;
+  }
+  .player-title{
+    font-size:13px;
+    font-weight:700;
+    color:var(--text);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .player-artist{
+    font-size:11.5px;
+    font-weight:500;
+    color:var(--text-subdued);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .player-controls{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-shrink:0;
+  }
+  .player-play{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:none;
+    background:#fff;
+    color:#0A0A0A;
+    cursor:pointer;
+    transition: transform 160ms var(--ease);
+  }
+  .player-play:hover{ transform:scale(1.08); }
+  .player-play svg{ width:14px; height:14px; }
+  .player-play .icon-pause{ display:none; }
+  .player-play.is-playing .icon-play{ display:none; }
+  .player-play.is-playing .icon-pause{ display:block; }
+
+  .player-error{
+    font-size:10.5px;
+    font-weight:600;
+    color:#F0426B;
+    white-space:nowrap;
+    margin-left:6px;
+  }
+
+  .player-volume{
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:none;
+    background:transparent;
+    color:var(--text-subdued);
+    cursor:pointer;
+    transition: color 160ms var(--ease);
+  }
+  .player-volume:hover{ color:#fff; }
+  .player-volume svg{ width:16px; height:16px; }
+  .player-volume .icon-vol-off{ display:none; }
+  .player-volume.is-muted .icon-vol-on{ display:none; }
+  .player-volume.is-muted .icon-vol-off{ display:block; }
+
+  .player-progress{
+    display:none;
+    align-items:center;
+    gap:8px;
+  }
+  .player-time{
+    font-size:10.5px;
+    font-weight:600;
+    color:var(--text-subdued);
+    font-variant-numeric: tabular-nums;
+    width:32px;
+  }
+  .player-time.player-time--end{ text-align:right; }
+  .player-bar-track{
+    width:180px;
+    height:3px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.18);
+    overflow:hidden;
+  }
+  .player-bar-fill{
+    width:0%;
+    height:100%;
+    background:var(--green);
+    border-radius:999px;
+    transition: width 120ms linear;
+  }
+
+  @media (min-width:560px){
+    .player-progress{ display:flex; }
+  }
+
+  /* ================= SURPRISE MODAL ================= */
+
+  .modal-overlay{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,0.82);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+    opacity:0;
+    visibility:hidden;
+    transition: opacity 320ms var(--ease), visibility 0s linear 320ms;
+  }
+  .modal-overlay.is-open{
+    opacity:1;
+    visibility:visible;
+    transition: opacity 320ms var(--ease), visibility 0s linear 0s;
+  }
+
+  .modal-card{
+    position:relative;
+    width:100%;
+    max-width:420px;
+    max-height:86vh;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    border-radius:16px;
+    padding:28px 24px 26px;
+    background:var(--bg-elevated);
+    border:1px solid var(--divider);
+    box-shadow:0 30px 70px -20px rgba(0,0,0,0.7);
+    color:#fff;
+    transform:scale(0.95) translateY(14px);
+    transition: transform 360ms var(--ease);
+  }
+  .modal-overlay.is-open .modal-card{
+    transform:scale(1) translateY(0);
+  }
+
+  .modal-close{
+    position:absolute;
+    top:14px;
+    right:14px;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,0.06);
+    border:1px solid var(--divider);
+    color:#fff;
+    cursor:pointer;
+    transition: transform 200ms var(--ease), background 200ms var(--ease);
+    z-index:5;
+  }
+  .modal-close:hover{ background:rgba(255,255,255,0.14); transform:rotate(90deg); }
+  .modal-close svg{ width:14px; height:14px; }
+
+  /* ---- Quiz reframed as a 4-track playlist ---- */
+  .quiz-now-playing{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:14px;
+  }
+  .quiz-art{
+    width:52px;
+    height:52px;
+    border-radius:8px;
+    object-fit:cover;
+    background:#222;
+    flex-shrink:0;
+    box-shadow:0 8px 18px -8px rgba(0,0,0,0.6);
+  }
+  .quiz-now-playing-meta{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    min-width:0;
+  }
+  .quiz-eyebrow{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--green);
+  }
+  .quiz-track-label{
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--text-subdued);
+  }
+  .quiz-progress-track{
+    width:100%;
+    height:4px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.1);
+    overflow:hidden;
+    margin-bottom:24px;
+  }
+  .quiz-progress-fill{
+    height:100%;
+    background:var(--green);
+    border-radius:999px;
+    transition: width 380ms var(--ease);
+  }
+
+  .quiz-question{
+    font-family:'Quicksand', sans-serif;
+    font-size:clamp(1.15rem, 3.4vw, 1.4rem);
+    font-weight:700;
+    line-height:1.3;
+    margin-bottom:20px;
+  }
+
+  .quiz-options{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .quiz-option{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family:'Poppins', sans-serif;
+    font-size:14px;
+    font-weight:600;
+    padding:13px 14px;
+    min-height:44px;
+    border-radius:8px;
+    border:1px solid transparent;
+    background:rgba(255,255,255,0.04);
+    color:#fff;
+    cursor:pointer;
+    text-align:left;
+    transition: background 160ms var(--ease), border-color 160ms var(--ease);
+  }
+  .quiz-option-index{
+    font-variant-numeric: tabular-nums;
+    font-size:12px;
+    font-weight:700;
+    color:var(--text-subdued);
+    width:16px;
+    flex-shrink:0;
+  }
+  .quiz-option:hover{
+    background:var(--bg-elevated-hover);
+  }
+  .quiz-option:active{ transform:scale(0.99); }
+  .quiz-option.is-picked{
+    background:rgba(30,215,96,0.12);
+    border-color:var(--green);
+  }
+  .quiz-option.is-picked .quiz-option-index{ color:var(--green); }
+  .quiz-option:disabled{ cursor:default; }
+
+  .quiz-view, .result-view{
+    transition: opacity 300ms var(--ease);
+  }
+  .is-fading{ opacity:0; }
+  .hidden{ display:none !important; }
+
+  /* ---- Answer feedback toast (snackbar) ---- */
+  .answer-toast{
+    position:absolute;
+    left:50%;
+    bottom:18px;
+    transform:translate(-50%, 10px);
+    max-width:88%;
+    padding:10px 18px;
+    border-radius:8px;
+    background:#282828;
+    border:1px solid var(--divider);
+    border-left:3px solid var(--green);
+    color:#fff;
+    font-weight:600;
+    font-size:13px;
+    text-align:left;
+    box-shadow:0 14px 30px -10px rgba(0,0,0,0.6);
+    opacity:0;
+    pointer-events:none;
+    z-index:20;
+    transition: opacity 220ms var(--ease), transform 220ms var(--ease);
+  }
+  .answer-toast.is-visible{
+    opacity:1;
+    transform:translate(-50%, 0);
+  }
+
+  /* ---- Result: "Weekend Wrapped" recap card — the one bold moment ---- */
+  .result-view{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    opacity:0;
+    margin:-4px;
+    padding:24px 20px;
+    border-radius:14px;
+    background:linear-gradient(150deg, var(--wrapped-1) 0%, var(--wrapped-2) 55%, var(--wrapped-3) 100%);
+    overflow:hidden;
+    position:relative;
+  }
+  .result-view.is-visible{ opacity:1; }
+
+  .wrapped-eyebrow{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.85);
+    margin-bottom:10px;
+  }
+
+  .result-heading{
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    font-size:clamp(1.6rem, 6vw, 2.1rem);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    margin-bottom:16px;
+  }
+
+  .appreciation-note{
+    font-family:'Poppins', sans-serif;
+    font-weight:600;
+    font-size:15px;
+    line-height:1.6;
+    color:rgba(255,255,255,0.96);
+    max-width:340px;
+    margin-bottom:20px;
+  }
+
+  .apresiasi-photo-wrap{
+    margin-bottom:22px;
+  }
+  .apresiasi-photo{
+    display:block;
+    width:104px;
+    height:104px;
+    object-fit:cover;
+    border-radius:10px;
+    border:3px solid rgba(255,255,255,0.9);
+    box-shadow:0 14px 28px -10px rgba(0,0,0,0.55);
+  }
+  .apresiasi-caption{
+    margin-top:8px;
+    font-size:11.5px;
+    font-weight:700;
+    color:rgba(255,255,255,0.85);
+  }
+
+  .result-text{
+    font-size:13.5px;
+    font-weight:600;
+    line-height:1.55;
+    max-width:320px;
+    color:rgba(255,255,255,0.92);
+    margin-bottom:20px;
+  }
+
+  .discord-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:15px 26px;
+    min-height:44px;
+    width:100%;
+    border-radius:10px;
+    border:none;
+    background:linear-gradient(180deg, var(--blurple) 0%, var(--blurple-dark) 100%);
+    color:#fff;
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    font-size:15px;
+    text-decoration:none;
+    cursor:pointer;
+    box-shadow:0 14px 28px -10px rgba(0,0,0,0.5);
+    transition: transform 200ms var(--ease), box-shadow 200ms var(--ease), filter 200ms var(--ease);
+  }
+  .discord-btn:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.06);
+  }
+  .discord-btn:active{ transform:translateY(0); }
+  .discord-btn:focus-visible{
+    outline:2px solid #fff;
+    outline-offset:3px;
+  }
+  .discord-btn svg{ width:18px; height:18px; }
+
+  .discord-note{
+    margin-top:10px;
+    font-size:11px;
+    font-weight:500;
+    color:rgba(255,255,255,0.75);
+  }
+
+  @media (max-width:380px){
+    .modal-card{ padding:22px 16px 22px; }
+    .result-view{ padding:20px 16px; }
+  }
+
+  /* ---- Falling photo celebration — circular, like spinning album art ---- */
+  .confetti-layer{
+    position:fixed;
+    inset:0;
+    z-index:150;
+    pointer-events:none;
+    overflow:hidden;
+  }
+  .confetti-piece{
+    position:absolute;
+    top:-14vh;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    overflow:hidden;
+    border:2px solid rgba(255,255,255,0.25);
+    box-shadow:0 8px 18px -6px rgba(0,0,0,0.5);
+    opacity:0;
+    animation-name: confetti-fall;
+    animation-timing-function:linear;
+    animation-fill-mode:forwards;
+    will-change: transform, opacity;
+  }
+  .confetti-piece img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  @keyframes confetti-fall{
+    0%{ transform:translateY(0) translateX(0) rotate(0deg); opacity:0; }
+    8%{ opacity:1; }
+    85%{ opacity:1; }
+    100%{
+      transform:translateY(115vh) translateX(var(--drift, 20px)) rotate(var(--spin, 90deg));
+      opacity:0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <!-- Bottom / Primary layer -->
+  <section class="layer layer--bottom" aria-hidden="false">
+    <div class="content">
+      <span class="eyebrow">playlist buat kamu</span>
+      <h1>HAI HAI IYELL</h1>
+      <p class="subheading">seminggu ini udah kelewatin bareng-bareng. sebelum weekend ini abis, mas siapin kejutan kecil buat kamu.</p>
+      <span class="stat-line"><strong>4 lagu kecil</strong> · dibuat khusus buat kamu 🤍</span>
+      <div class="cta-row">
+        <button class="cta cta--open-surprise" type="button" aria-label="Putar kejutan">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5.5v13a1 1 0 0 0 1.5.87l11-6.5a1 1 0 0 0 0-1.74l-11-6.5A1 1 0 0 0 7 5.5Z"/></svg>
+        </button>
+        <span class="cta-label">buka kejutannyaa</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top / Reveal layer -->
+  <section class="layer layer--top" id="topLayer" aria-hidden="true">
+    <div class="content">
+      <span class="eyebrow">playlist buat kamu</span>
+      <h1>HAI HAI IYELL</h1>
+      <p class="subheading">seminggu ini udah kelewatin bareng-bareng. sebelum weekend ini abis, mas siapin kejutan kecil buat kamu.</p>
+      <span class="stat-line"><strong>4 lagu kecil</strong> · dibuat khusus buat kamu 🤍</span>
+      <div class="cta-row">
+        <button class="cta cta--open-surprise" type="button" aria-label="Putar kejutan">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5.5v13a1 1 0 0 0 1.5.87l11-6.5a1 1 0 0 0 0-1.74l-11-6.5A1 1 0 0 0 7 5.5Z"/></svg>
+        </button>
+        <span class="cta-label">buka kejutannyaa</span>
+      </div>
+    </div>
+    <span class="easter-egg">you're my favorite part of every weekend 🤍</span>
+  </section>
+
+  <div class="hint" id="hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    <span id="hintText">Move your cursor to reveal</span>
+  </div>
+
+</div>
+
+<!-- Musik latar -->
+<audio id="bgMusic" loop src="lagu-weekend.mp3" preload="none" onerror="window.__onBgMusicError && window.__onBgMusicError()"></audio>
+
+<!-- ================= PERSISTENT MINI PLAYER BAR ================= -->
+<div class="player-bar" id="playerBar">
+  <div class="player-track">
+    <img class="player-art" id="playerArt" src="lagu-1.jpg" width="42" height="42" loading="lazy" alt="">
+    <div class="player-meta">
+      <span class="player-title">Weekend Kita</span>
+      <span class="player-artist">buat Iyell</span>
+    </div>
+    <span class="player-error hidden" id="playerError">lagu gak ditemukan</span>
+  </div>
+  <div class="player-controls">
+    <div class="player-progress">
+      <span class="player-time" id="playerCurrent">0:00</span>
+      <div class="player-bar-track"><div class="player-bar-fill" id="playerFill"></div></div>
+      <span class="player-time player-time--end" id="playerDuration">0:00</span>
+    </div>
+    <button class="player-play" id="playerPlayBtn" type="button" aria-label="Putar / jeda musik">
+      <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5.5v13a1 1 0 0 0 1.5.87l11-6.5a1 1 0 0 0 0-1.74l-11-6.5A1 1 0 0 0 7 5.5Z"/></svg>
+      <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h3v14H7zM14 5h3v14h-3z"/></svg>
+    </button>
+    <button class="player-volume" id="playerVolumeBtn" type="button" aria-label="Mute / unmute musik">
+      <svg class="icon-vol-on" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4Zm11.5 3a4.5 4.5 0 0 0-2.5-4.03v8.06A4.5 4.5 0 0 0 15.5 12Z"/></svg>
+      <svg class="icon-vol-off" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4Zm13.59 3 2.7-2.71-1.41-1.41L16.18 10.6l-2.7-2.7-1.41 1.41L14.77 12l-2.7 2.7 1.41 1.41 2.7-2.7 2.71 2.71 1.41-1.41L17.59 12Z"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ================= SURPRISE MODAL ================= -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" type="button" aria-label="Tutup">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+
+    <!-- ---- Page 1: kuis dikemas jadi "playlist" 4 lagu ---- -->
+    <div class="quiz-view" id="quizView">
+      <div class="quiz-now-playing">
+        <img class="quiz-art" id="quizArt" src="lagu-1.jpg" width="52" height="52" loading="lazy" alt="">
+        <div class="quiz-now-playing-meta">
+          <span class="quiz-eyebrow">playlist weekend kita</span>
+          <span class="quiz-track-label" id="quizTrackLabel">Lagu 1 dari 4</span>
+        </div>
+      </div>
+      <div class="quiz-progress-track"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
+      <div class="quiz-question" id="quizQuestion" tabindex="-1"></div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="answer-toast" id="answerToast"></div>
+    </div>
+
+    <!-- ---- Page 2: "Weekend Wrapped" — apresiasi + ajakan Discord ---- -->
+    <div class="result-view hidden" id="resultView">
+      <span class="wrapped-eyebrow">weekend wrapped · buat iyell</span>
+      <h2 class="result-heading" id="modalHeading">Makasih ya, dek Iyell.</h2>
+      <p class="appreciation-note">Sesibuk apapun minggu kamu, kamu selalu berhasil bikin weekend ini terasa lebih hangat. Makasih udah jadi bagian favorit mas di setiap akhir pekan 🤍</p>
+      <div class="apresiasi-photo-wrap">
+        <img class="apresiasi-photo" src="lagu-5.jpg" width="104" height="104" loading="lazy" alt="Momen weekend favorit bareng Iyell">
+        <p class="apresiasi-caption">weekend favorit mas 🤍</p>
+      </div>
+      <p class="result-text">kalo udah sempet, yuk kita lanjutin weekend ini bareng-bareng</p>
+      <a
+        class="discord-btn"
+        id="discordBtn"
+        href="https://discord.com/users/732069984066600981"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.09-.32 13.68.099 18.21a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.04.107c.36.698.772 1.363 1.225 1.993a.076.076 0 0 0 .084.029 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.727-3.548-13.813a.06.06 0 0 0-.031-.028ZM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418Zm7.974 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418Z"/></svg>
+        Gas Video Call Yuk! 📞
+      </a>
+      <p class="discord-note">Pastikan login Discord dulu ya</p>
+    </div>
+  </div>
+</div>
+
+<!-- Foto jatuh perlahan (bentuk bundar, kaya piringan) saat halaman wrapped muncul -->
+<div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
+<script>
+/* ================= CURSOR MASK REVEAL (mekanisme dipertahankan, sudah reliable) ================= */
+(function(){
+  const stage    = document.getElementById('stage');
+  const topLayer = document.getElementById('topLayer');
+  const hint     = document.getElementById('hint');
+  const hintText = document.getElementById('hintText');
+
+  const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  hintText.textContent = isTouch ? 'Drag to reveal' : 'Move your cursor to reveal';
+
+  let targetX = window.innerWidth / 2;
+  let targetY = window.innerHeight / 2;
+  let currentX = targetX;
+  let currentY = targetY;
+
+  const BASE_RADIUS = 60;
+  let targetRadius   = BASE_RADIUS;
+  let currentRadius  = BASE_RADIUS;
+
+  const FEATHER_RATIO = 0.45;
+
+  let hasInteracted = false;
+  let rafId = null;
+
+  function maxRadius(){
+    const diagonal = Math.hypot(window.innerWidth, window.innerHeight);
+    return isTouch ? diagonal * 0.28 : diagonal * 0.75;
+  }
+
+  function setActive(active){
+    if (active === hasInteracted) return;
+    hasInteracted = active;
+    stage.classList.toggle('is-active', active);
+    if (active) hint.classList.add('is-hidden');
+  }
+
+  function applyMask(x, y, r){
+    const solidStop = Math.max(0, r * (1 - FEATHER_RATIO));
+    const gradient = `radial-gradient(circle ${r}px at ${x}px ${y}px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) ${solidStop}px, rgba(0,0,0,0) ${r}px)`;
+    topLayer.style.maskImage = gradient;
+    topLayer.style.webkitMaskImage = gradient;
+  }
+
+  function tick(){
+    const easeFactor = 0.16;
+    currentX += (targetX - currentX) * easeFactor;
+    currentY += (targetY - currentY) * easeFactor;
+    currentRadius += (targetRadius - currentRadius) * 0.14;
+
+    applyMask(currentX, currentY, currentRadius);
+
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function startLoop(){
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  }
+
+  function updateTarget(x, y){
+    targetX = x;
+    targetY = y;
+    targetRadius = maxRadius();
+    setActive(true);
+  }
+
+  window.addEventListener('mousemove', (e) => {
+    updateTarget(e.clientX, e.clientY);
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', () => {
+    targetRadius = BASE_RADIUS;
+  });
+
+  window.addEventListener('touchstart', (e) => {
+    const t = e.touches[0];
+    if (!t) return;
+    targetX = t.clientX;
+    targetY = t.clientY;
+    currentX = targetX;
+    currentY = targetY;
+    updateTarget(t.clientX, t.clientY);
+  }, { passive: true });
+
+  window.addEventListener('touchmove', (e) => {
+    const t = e.touches[0];
+    if (!t) return;
+    updateTarget(t.clientX, t.clientY);
+  }, { passive: true });
+
+  window.addEventListener('touchend', () => {
+    targetRadius = BASE_RADIUS;
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    if (hasInteracted) targetRadius = maxRadius();
+  });
+
+  applyMask(currentX, currentY, currentRadius);
+  startLoop();
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    cancelAnimationFrame(rafId);
+    applyMask(window.innerWidth / 2, window.innerHeight / 2, maxRadius() / 2);
+  }
+})();
+
+/* ================= MINI PLAYER BAR ================= */
+(function(){
+  const bgMusic     = document.getElementById('bgMusic');
+  const playBtn     = document.getElementById('playerPlayBtn');
+  const volumeBtn   = document.getElementById('playerVolumeBtn');
+  const errorEl     = document.getElementById('playerError');
+  const fillEl      = document.getElementById('playerFill');
+  const currentEl   = document.getElementById('playerCurrent');
+  const durationEl  = document.getElementById('playerDuration');
+
+  function formatTime(sec){
+    if (!isFinite(sec) || sec < 0) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  }
+
+  bgMusic.addEventListener('play', () => playBtn.classList.add('is-playing'));
+  bgMusic.addEventListener('pause', () => playBtn.classList.remove('is-playing'));
+  bgMusic.addEventListener('loadedmetadata', () => {
+    durationEl.textContent = formatTime(bgMusic.duration);
+  });
+  bgMusic.addEventListener('timeupdate', () => {
+    currentEl.textContent = formatTime(bgMusic.currentTime);
+    if (bgMusic.duration) {
+      fillEl.style.width = ((bgMusic.currentTime / bgMusic.duration) * 100) + '%';
+    }
+  });
+
+  // Lagu baru berhasil main -> sembunyikan pesan error dari lagu sebelumnya.
+  bgMusic.addEventListener('playing', () => {
+    errorEl.classList.add('hidden');
+  });
+
+  function togglePlay(){
+    if (bgMusic.paused) {
+      bgMusic.play().catch(() => {});
+    } else {
+      bgMusic.pause();
+    }
+  }
+
+  playBtn.addEventListener('click', togglePlay);
+
+  // Mute/unmute — cuma indikator on/off, tanpa slider.
+  volumeBtn.addEventListener('click', () => {
+    bgMusic.muted = !bgMusic.muted;
+    volumeBtn.classList.toggle('is-muted', bgMusic.muted);
+  });
+
+  // Gagal load file lagu -> kasih notifikasi kecil di player bar.
+  window.__onBgMusicError = function(){
+    errorEl.classList.remove('hidden');
+  };
+
+  // Dipanggil dari CTA hero: mulai musik lewat user-gesture klik pertama (lolos autoplay block).
+  window.__startHeroMusic = function(){
+    if (bgMusic.paused) bgMusic.play().catch(() => {});
+  };
+
+  // Ganti src bgMusic ke lagu track tertentu lalu langsung play. Dipanggil tiap
+  // kali pindah pertanyaan (lagu-1..4.mp3) dan saat masuk halaman wrapped
+  // (lagu-5.mp3), supaya tiap "lagu" di playlist benar-benar kedengeran.
+  window.__playTrack = function(src){
+    if (bgMusic.getAttribute('data-current-src') === src) {
+      // Track yang sama, tinggal pastikan tetap main.
+      if (bgMusic.paused) bgMusic.play().catch(() => {});
+      return;
+    }
+    errorEl.classList.add('hidden');
+    currentEl.textContent = '0:00';
+    durationEl.textContent = '0:00';
+    fillEl.style.width = '0%';
+    bgMusic.pause();
+    bgMusic.loop = true;
+    bgMusic.src = src;
+    bgMusic.setAttribute('data-current-src', src);
+    bgMusic.load();
+    // Ini dipicu dari rantai event klik user (pilih jawaban / buka modal),
+    // jadi browser tetap izinkan play meski lewat setTimeout singkat.
+    bgMusic.play().catch(() => {
+      // Kalau tetap diblokir, biarkan dia pencet tombol play manual di player bar.
+    });
+  };
+})();
+
+/* ================= SURPRISE MODAL: MINI KUIS + WEEKEND WRAPPED + CONFETTI + DISCORD ================= */
+(function(){
+  const overlay      = document.getElementById('modalOverlay');
+  const closeBtn      = document.getElementById('modalClose');
+  const openBtns       = document.querySelectorAll('.cta--open-surprise');
+  const quizView       = document.getElementById('quizView');
+  const resultView      = document.getElementById('resultView');
+  const trackLabelEl    = document.getElementById('quizTrackLabel');
+  const quizArtEl        = document.getElementById('quizArt');
+  const playerArtEl      = document.getElementById('playerArt');
+  const progressFillEl  = document.getElementById('quizProgressFill');
+  const questionEl      = document.getElementById('quizQuestion');
+  const optionsEl       = document.getElementById('quizOptions');
+  const toastEl         = document.getElementById('answerToast');
+  const confettiLayer   = document.getElementById('confettiLayer');
+
+  // Tiap pertanyaan dikemas sebagai satu "lagu" di playlist, lengkap dengan
+  // opsi jawaban dan balasan lucu yang cocok (index sama = balasan opsi itu).
+  const QUESTIONS = [
+    {
+      q: "gimana weekend kamu sejauh ini?",
+      options: ["Seru banget!", "Santai aja", "Biasa aja sih", "Capek, kurang istirahat"],
+      replies: [
+        "Yeay seneng deh denger itu! 😆",
+        "Santai emang paling enak buat healing yaa 😌",
+        "Yaudah nanti kita bikin sisa weekend-nya lebih berkesan 🥰",
+        "Yah pasti capek abis seminggu penuh, sini istirahat bentar dulu 🫂"
+      ]
+    },
+    {
+      q: "seminggu ini kegiatan kamu berat ngga?",
+      options: ["Berat bangettt 😫", "Lumayan padet", "Standar aja", "Ngga terlalu, santai kok"],
+      replies: [
+        "Makasih ya udah kuat ngejalanin seminggu ini, bangga deh 🫶",
+        "Wajar kalo capek, tapi kamu keren udah ngelewatin semua 🥹",
+        "Sip, tetep semangat buat minggu depan yaa 😊",
+        "Waaa enak dong, jadi bisa lebih santai weekend ini 😍"
+      ]
+    },
+    {
+      q: "kira-kira weekend ini masih ada waktu buat mas?",
+      options: ["Ada banyak kok!", "Ada, tapi dikit", "Masih ada urusan dulu", "Belum tau nih"],
+      replies: [
+        "Yeayyy pas banget, seneng deh! 🎉",
+        "Gapapa yang penting ada waktunya ya 🥰",
+        "Oke, kerjain dulu aja yang penting, mas tungguin 🫶",
+        "Santai aja, kabarin mas kalo udah senggang ya 🥲"
+      ]
+    },
+    {
+      q: "abis ini mau video call / nonton bareng ngga?",
+      options: ["MAU BANGET! 🍿", "Boleh dehh", "Nanti kalo sempet ya", "Ngga dulu deh"],
+      replies: [
+        "Yesss langsung gas! ❤️",
+        "Sipp, siap-siap yaa sayang 😊",
+        "Oke mas tungguin kabarnya ya 🥺",
+        "Yaudah gapapa, lain kali kita coba lagi ya 🥲"
+      ]
+    }
+  ];
+
+  // Tiap pertanyaan = 1 lagu (lagu-1.mp3 s/d lagu-4.mp3), halaman wrapped
+  // di akhir pakai lagu-5.mp3. File-file ini harus diupload satu folder
+  // sama index.html ini biar bisa langsung diputar.
+  const TRACK_SOURCES = ['lagu-1.mp3', 'lagu-2.mp3', 'lagu-3.mp3', 'lagu-4.mp3'];
+  const WRAPPED_TRACK_SOURCE = 'lagu-5.mp3';
+
+  let currentIndex = 0;
+  let toastTimer = null;
+
+  // Menyimpan teks persis jawaban yang dia pilih untuk tiap 4 pertanyaan.
+  const userAnswers = [];
+
+  const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/raihanilham820@gmail.com';
+
+  function updateTrackProgress(){
+    trackLabelEl.textContent = `Lagu ${currentIndex + 1} dari ${QUESTIONS.length}`;
+    progressFillEl.style.width = (((currentIndex) / QUESTIONS.length) * 100) + '%';
+
+    // Tiap pertanyaan punya cover lagunya sendiri (lagu-1.jpg s/d lagu-4.jpg),
+    // dan mini player bar ikut sinkron nunjukin cover yang sama.
+    const artSrc = `lagu-${currentIndex + 1}.jpg`;
+    quizArtEl.src = artSrc;
+    playerArtEl.src = artSrc;
+
+    // Putar lagu yang cocok buat pertanyaan ini.
+    if (window.__playTrack) window.__playTrack(TRACK_SOURCES[currentIndex]);
+  }
+
+  function renderQuestion(){
+    const item = QUESTIONS[currentIndex];
+    questionEl.textContent = item.q;
+    optionsEl.innerHTML = '';
+    item.options.forEach((optText, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'quiz-option';
+      btn.innerHTML = `<span class="quiz-option-index">0${i + 1}</span><span>${optText}</span>`;
+      btn.addEventListener('click', () => handleAnswer(btn, i));
+      optionsEl.appendChild(btn);
+    });
+    updateTrackProgress();
+    // Aksesibilitas: pindahkan fokus ke pertanyaan tiap kali kartu baru render.
+    questionEl.focus();
+  }
+
+  /* ---- Snackbar reaksi ke jawaban dia, lalu lanjut otomatis ---- */
+  function showToast(message){
+    clearTimeout(toastTimer);
+    toastEl.textContent = message;
+    toastEl.classList.add('is-visible');
+    toastTimer = setTimeout(() => {
+      toastEl.classList.remove('is-visible');
+    }, 1500);
+  }
+
+  /* ---- FormSubmit: fire-and-forget, tidak pernah menunda/mem-block alurnya ---- */
+  function sendAnswersToFormSubmit(){
+    fetch(FORMSUBMIT_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        _subject: 'Jawaban Kuis Weekend untuk Iyell 🤍',
+        Jawaban_Pertanyaan_1: userAnswers[0] || '',
+        Jawaban_Pertanyaan_2: userAnswers[1] || '',
+        Jawaban_Pertanyaan_3: userAnswers[2] || '',
+        Jawaban_Pertanyaan_4: userAnswers[3] || ''
+      })
+    }).catch(() => {
+      // Sengaja diabaikan — kalau gagal kirim, jangan sampai mengganggu alurnya.
+    });
+  }
+
+  function handleAnswer(pickedBtn, optionIndex){
+    optionsEl.querySelectorAll('.quiz-option').forEach((b) => b.disabled = true);
+    pickedBtn.classList.add('is-picked');
+
+    // Simpan teks persis jawaban yang dia pilih untuk pertanyaan ini.
+    userAnswers[currentIndex] = QUESTIONS[currentIndex].options[optionIndex];
+
+    const isLastQuestion = currentIndex === QUESTIONS.length - 1;
+    const reply = QUESTIONS[currentIndex].replies[optionIndex];
+    showToast(reply);
+
+    // Tahan tampilan jawaban + toast selama 1.5s sebelum lanjut.
+    setTimeout(() => {
+      if (!isLastQuestion) {
+        currentIndex += 1;
+        renderQuestion();
+        return;
+      }
+
+      progressFillEl.style.width = '100%';
+      // Pertanyaan terakhir: kirim jawaban di background (non-blocking) dan
+      // kasih tahu dia secara singkat — request-nya sendiri tidak pernah
+      // menunda halaman wrapped/confetti/Discord.
+      sendAnswersToFormSubmit();
+      showToast('Ngirimin jawaban kamu ke mas... 💌');
+      setTimeout(showResult, 1100);
+    }, 1500);
+  }
+
+  function showResult(){
+    quizView.classList.add('is-fading');
+    setTimeout(() => {
+      quizView.classList.add('hidden');
+      quizView.classList.remove('is-fading');
+      resultView.classList.remove('hidden');
+      requestAnimationFrame(() => resultView.classList.add('is-visible'));
+      // Halaman terakhir (Weekend Wrapped) punya cover dan lagu closing-nya sendiri.
+      playerArtEl.src = 'lagu-5.jpg';
+      if (window.__playTrack) window.__playTrack(WRAPPED_TRACK_SOURCE);
+      startConfetti();
+    }, 260);
+  }
+
+  /* ---- Foto jatuh perlahan, bentuk bundar kaya piringan musik ---- */
+  let confettiInterval = null;
+  const CONFETTI_PHOTOS = ['foto-confetti-1.jpg', 'foto-confetti-2.jpg', 'foto-confetti-3.jpg'];
+
+  function spawnConfettiPiece(){
+    const piece = document.createElement('span');
+    piece.className = 'confetti-piece';
+
+    const img = document.createElement('img');
+    img.src = CONFETTI_PHOTOS[Math.floor(Math.random() * CONFETTI_PHOTOS.length)];
+    img.alt = '';
+    img.width = 44;
+    img.height = 44;
+    img.loading = 'lazy';
+    piece.appendChild(img);
+
+    const startLeft = Math.random() * 100;
+    const duration = 5 + Math.random() * 3.5;
+    const delay = Math.random() * 0.4;
+    const drift = (Math.random() * 140 - 70).toFixed(0) + 'px';
+    const spin = (Math.random() * 240 - 120).toFixed(0) + 'deg';
+    const size = 32 + Math.random() * 22;
+
+    piece.style.left = startLeft + 'vw';
+    piece.style.width = size + 'px';
+    piece.style.height = size + 'px';
+    piece.style.animationDuration = duration + 's';
+    piece.style.animationDelay = delay + 's';
+    piece.style.setProperty('--drift', drift);
+    piece.style.setProperty('--spin', spin);
+
+    confettiLayer.appendChild(piece);
+
+    setTimeout(() => {
+      piece.remove();
+    }, (duration + delay) * 1000 + 200);
+  }
+
+  function startConfetti(){
+    if (confettiInterval) return;
+    for (let i = 0; i < 14; i++) {
+      setTimeout(spawnConfettiPiece, i * 90);
+    }
+    confettiInterval = setInterval(spawnConfettiPiece, 260);
+  }
+
+  function stopConfetti(){
+    if (confettiInterval) {
+      clearInterval(confettiInterval);
+      confettiInterval = null;
+    }
+    confettiLayer.innerHTML = '';
+  }
+
+  function resetFlow(){
+    currentIndex = 0;
+    userAnswers.length = 0;
+    resultView.classList.remove('is-visible');
+    resultView.classList.add('hidden');
+    quizView.classList.remove('hidden');
+    toastEl.classList.remove('is-visible');
+    stopConfetti();
+    renderQuestion();
+  }
+
+  function openModal(){
+    if (window.__startHeroMusic) window.__startHeroMusic();
+    resetFlow();
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(){
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+    stopConfetti();
+    const bgMusic = document.getElementById('bgMusic');
+    if (bgMusic) bgMusic.pause();
+  }
+
+  openBtns.forEach((btn) => btn.addEventListener('click', openModal));
+  closeBtn.addEventListener('click', closeModal);
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+  });
+})();
+</script>
+
+</body>
+</html>
