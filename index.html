@@ -234,6 +234,36 @@
     border-top:1px solid var(--divider);
   }
 
+  /* ---- Garis scrubber tipis melintang di tepi atas player bar (khusus layar sempit) ---- */
+  .player-scrubber{
+    display:none;
+    position:absolute;
+    left:0; right:0;
+    top:0;
+    height:3px;
+    background:rgba(255,77,141,0.18);
+    cursor:pointer;
+    touch-action:none;
+  }
+  .player-scrubber::before{
+    /* Perbesar area sentuh tanpa mengubah tampilan garis tipisnya */
+    content:"";
+    position:absolute;
+    left:0; right:0;
+    top:50%;
+    transform:translateY(-50%);
+    height:26px;
+  }
+  .player-scrubber-fill{
+    width:0%;
+    height:100%;
+    background:var(--pink);
+    border-radius:0 999px 999px 0;
+  }
+  @media (max-width:559px){
+    .player-scrubber{ display:block; }
+  }
+
   .player-track{
     display:flex;
     align-items:center;
@@ -338,18 +368,52 @@
   }
   .player-time.player-time--end{ text-align:right; }
   .player-bar-track{
+    position:relative;
     width:180px;
     height:3px;
     border-radius:999px;
     background:rgba(255,77,141,0.18);
-    overflow:hidden;
+    cursor:pointer;
+    touch-action:none;
+    transition: height 140ms var(--ease);
+  }
+  .player-bar-track::before{
+    /* Perbesar area sentuh/klik tanpa mengubah tampilan garis tipisnya */
+    content:"";
+    position:absolute;
+    left:0; right:0;
+    top:50%;
+    transform:translateY(-50%);
+    height:22px;
+  }
+  .player-bar-track:hover,
+  .player-bar-track.is-dragging{
+    height:5px;
   }
   .player-bar-fill{
+    position:relative;
     width:0%;
     height:100%;
     background:var(--pink);
     border-radius:999px;
     transition: width 120ms linear;
+  }
+  .player-bar-thumb{
+    position:absolute;
+    right:-5px;
+    top:50%;
+    transform:translate(50%, -50%) scale(0);
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--pink);
+    box-shadow:0 1px 4px rgba(230,56,118,0.5);
+    transition: transform 140ms var(--ease);
+    pointer-events:none;
+  }
+  .player-bar-track:hover .player-bar-thumb,
+  .player-bar-track.is-dragging .player-bar-thumb{
+    transform:translate(50%, -50%) scale(1);
   }
 
   @media (min-width:560px){
@@ -753,6 +817,7 @@
 
 <!-- ================= PERSISTENT MINI PLAYER BAR ================= -->
 <div class="player-bar" id="playerBar">
+  <div class="player-scrubber" id="playerScrubber"><div class="player-scrubber-fill" id="scrubberFill"></div></div>
   <div class="player-track">
     <img class="player-art" id="playerArt" src="lagu-1.jpg" width="42" height="42" loading="lazy" alt="">
     <div class="player-meta">
@@ -764,7 +829,7 @@
   <div class="player-controls">
     <div class="player-progress">
       <span class="player-time" id="playerCurrent">0:00</span>
-      <div class="player-bar-track"><div class="player-bar-fill" id="playerFill"></div></div>
+      <div class="player-bar-track" id="playerBarTrack"><div class="player-bar-fill" id="playerFill"><span class="player-bar-thumb"></span></div></div>
       <span class="player-time player-time--end" id="playerDuration">0:00</span>
     </div>
     <button class="player-play" id="playerPlayBtn" type="button" aria-label="Putar / jeda musik">
@@ -945,6 +1010,9 @@
   const fillEl      = document.getElementById('playerFill');
   const currentEl   = document.getElementById('playerCurrent');
   const durationEl  = document.getElementById('playerDuration');
+  const barTrackEl  = document.getElementById('playerBarTrack');
+  const scrubberEl  = document.getElementById('playerScrubber');
+  const scrubberFillEl = document.getElementById('scrubberFill');
 
   function formatTime(sec){
     if (!isFinite(sec) || sec < 0) return '0:00';
@@ -961,7 +1029,9 @@
   bgMusic.addEventListener('timeupdate', () => {
     currentEl.textContent = formatTime(bgMusic.currentTime);
     if (bgMusic.duration) {
-      fillEl.style.width = ((bgMusic.currentTime / bgMusic.duration) * 100) + '%';
+      const pct = (bgMusic.currentTime / bgMusic.duration) * 100;
+      fillEl.style.width = pct + '%';
+      scrubberFillEl.style.width = pct + '%';
     }
   });
 
@@ -969,6 +1039,54 @@
   bgMusic.addEventListener('playing', () => {
     errorEl.classList.add('hidden');
   });
+
+  /* ---- Garis progress bisa diklik / digeser (maju-mundur lagu) ----
+     Ada 2 garis yang dibikin bisa di-seek: track detail (desktop, dgn
+     angka menit) dan scrubber tipis di tepi atas player bar (mobile). */
+  function ratioFromPointer(trackEl, clientX){
+    const rect = trackEl.getBoundingClientRect();
+    const ratio = (clientX - rect.left) / rect.width;
+    return Math.min(1, Math.max(0, ratio));
+  }
+
+  function seekToRatio(ratio){
+    if (!isFinite(bgMusic.duration) || !bgMusic.duration) return;
+    bgMusic.currentTime = ratio * bgMusic.duration;
+    // Update tampilan langsung biar terasa responsif meski belum ada event timeupdate.
+    fillEl.style.width = (ratio * 100) + '%';
+    scrubberFillEl.style.width = (ratio * 100) + '%';
+    currentEl.textContent = formatTime(bgMusic.currentTime);
+  }
+
+  function makeSeekable(trackEl, draggingClass){
+    let isDraggingSeek = false;
+
+    trackEl.addEventListener('pointerdown', (e) => {
+      isDraggingSeek = true;
+      if (draggingClass) trackEl.classList.add(draggingClass);
+      trackEl.setPointerCapture(e.pointerId);
+      seekToRatio(ratioFromPointer(trackEl, e.clientX));
+    });
+
+    trackEl.addEventListener('pointermove', (e) => {
+      if (!isDraggingSeek) return;
+      seekToRatio(ratioFromPointer(trackEl, e.clientX));
+    });
+
+    function endSeekDrag(e){
+      if (!isDraggingSeek) return;
+      isDraggingSeek = false;
+      if (draggingClass) trackEl.classList.remove(draggingClass);
+      if (trackEl.hasPointerCapture(e.pointerId)) {
+        trackEl.releasePointerCapture(e.pointerId);
+      }
+    }
+    trackEl.addEventListener('pointerup', endSeekDrag);
+    trackEl.addEventListener('pointercancel', endSeekDrag);
+  }
+
+  makeSeekable(barTrackEl, 'is-dragging');
+  makeSeekable(scrubberEl, null);
 
   function togglePlay(){
     if (bgMusic.paused) {
