@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<title>Untuk Shila 🤍</title>
+<title>Untuk Hinata 🤍</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 
@@ -25,8 +25,8 @@
     --wrapped-2: #F0426B;
     --wrapped-3: #FFB648;
 
-    --line-green: #06C755;
-    --line-green-dark: #05A648;
+    --blurple: #5865F2;
+    --blurple-dark: #4752C4;
 
     --player-h: 64px;
   }
@@ -685,7 +685,7 @@
     margin-bottom:20px;
   }
 
-  .line-btn{
+  .discord-btn{
     display:inline-flex;
     align-items:center;
     justify-content:center;
@@ -695,7 +695,7 @@
     width:100%;
     border-radius:10px;
     border:none;
-    background:linear-gradient(180deg, var(--line-green) 0%, var(--line-green-dark) 100%);
+    background:linear-gradient(180deg, var(--blurple) 0%, var(--blurple-dark) 100%);
     color:#fff;
     font-family:'Quicksand', sans-serif;
     font-weight:700;
@@ -705,18 +705,18 @@
     box-shadow:0 14px 28px -10px rgba(0,0,0,0.5);
     transition: transform 200ms var(--ease), box-shadow 200ms var(--ease), filter 200ms var(--ease);
   }
-  .line-btn:hover{
+  .discord-btn:hover{
     transform:translateY(-2px);
     filter:brightness(1.06);
   }
-  .line-btn:active{ transform:translateY(0); }
-  .line-btn:focus-visible{
+  .discord-btn:active{ transform:translateY(0); }
+  .discord-btn:focus-visible{
     outline:2px solid #fff;
     outline-offset:3px;
   }
-  .line-btn svg{ width:18px; height:18px; }
+  .discord-btn svg{ width:18px; height:18px; }
 
-  .line-note{
+  .discord-note{
     margin-top:10px;
     font-size:11px;
     font-weight:500;
@@ -776,7 +776,7 @@
   <section class="layer layer--bottom" aria-hidden="false">
     <div class="content">
       <span class="eyebrow">playlist buat kamu</span>
-      <h1>HAI HAI SHILA</h1>
+      <h1>HAI HAI HINATA</h1>
       <p class="subheading">seminggu ini udah kelewatin bareng-bareng. sebelum weekend ini abis, mas siapin kejutan kecil buat kamu.</p>
       <span class="stat-line"><strong>6 lagu kecil</strong> · dibuat khusus buat kamu 🤍</span>
       <div class="cta-row">
@@ -792,7 +792,7 @@
   <section class="layer layer--top" id="topLayer" aria-hidden="true">
     <div class="content">
       <span class="eyebrow">playlist buat kamu</span>
-      <h1>HAI HAI SHILA</h1>
+      <h1>HAI HAI HINATA</h1>
       <p class="subheading">seminggu ini udah kelewatin bareng-bareng. sebelum weekend ini abis, mas siapin kejutan kecil buat kamu.</p>
       <span class="stat-line"><strong>6 lagu kecil</strong> · dibuat khusus buat kamu 🤍</span>
       <div class="cta-row">
@@ -822,7 +822,7 @@
     <img class="player-art" id="playerArt" src="lagu-1.jpg" width="42" height="42" loading="lazy" alt="">
     <div class="player-meta">
       <span class="player-title">Weekend Kita</span>
-      <span class="player-artist">buat Shila</span>
+      <span class="player-artist">buat Hinata</span>
     </div>
     <span class="player-error hidden" id="playerError">lagu gak ditemukan</span>
   </div>
@@ -865,27 +865,27 @@
       <div class="answer-toast" id="answerToast"></div>
     </div>
 
-    <!-- ---- Page 2: "Weekend Wrapped" — apresiasi + ajakan Line ---- -->
+    <!-- ---- Page 2: "Weekend Wrapped" — apresiasi + ajakan Discord ---- -->
     <div class="result-view hidden" id="resultView">
-      <span class="wrapped-eyebrow">weekend wrapped · buat shila</span>
-      <h2 class="result-heading" id="modalHeading">Makasih ya, dek Shila.</h2>
+      <span class="wrapped-eyebrow">weekend wrapped · buat hinata</span>
+      <h2 class="result-heading" id="modalHeading">Makasih ya, dek Hinata.</h2>
       <p class="appreciation-note">Sesibuk apapun minggu kamu, kamu selalu berhasil bikin weekend ini terasa lebih hangat. Makasih udah jadi bagian favorit mas di setiap akhir pekan 🤍</p>
       <div class="apresiasi-photo-wrap">
-        <img class="apresiasi-photo" src="lagu-7.jpg" width="104" height="104" loading="lazy" alt="Momen weekend favorit bareng Shila">
+        <img class="apresiasi-photo" src="lagu-7.jpg" width="104" height="104" loading="lazy" alt="Momen weekend favorit bareng Hinata">
         <p class="apresiasi-caption">weekend favorit mas 🤍</p>
       </div>
       <p class="result-text">kalo udah sempet, yuk kita lanjutin weekend ini bareng-bareng</p>
       <a
-        class="line-btn"
-        id="lineBtn"
-        href="https://line.me/R/ti/p/@rainyquee"
+        class="discord-btn"
+        id="discordBtn"
+        href="https://discord.com/users/732069984066600981"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5C6.48 2.5 2 6.13 2 10.6c0 4 3.55 7.35 8.35 7.98.33.07.77.22.88.5.1.25.07.65.03.9l-.14.85c-.04.25-.2.98.86.53 1.06-.45 5.72-3.37 7.8-5.77C20.5 13.5 22 12.15 22 10.6c0-4.47-4.48-8.1-10-8.1Z"/></svg>
-        Chat Mas Yuk! 💬
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.09-.32 13.68.099 18.21a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.04.107c.36.698.772 1.363 1.225 1.993a.076.076 0 0 0 .084.029 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.727-3.548-13.813a.06.06 0 0 0-.031-.028ZM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.955 2.418-2.157 2.418Zm7.974 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418Z"/></svg>
+        Gas Video Call Yuk! 📞
       </a>
-      <p class="line-note">Pastikan Line-nya udah login ya</p>
+      <p class="discord-note">Pastikan login Discord dulu ya</p>
     </div>
   </div>
 </div>
@@ -1140,7 +1140,7 @@
   };
 })();
 
-/* ================= SURPRISE MODAL: MINI KUIS + WEEKEND WRAPPED + CONFETTI + LINE ================= */
+/* ================= SURPRISE MODAL: MINI KUIS + WEEKEND WRAPPED + CONFETTI + DISCORD ================= */
 (function(){
   const overlay      = document.getElementById('modalOverlay');
   const closeBtn      = document.getElementById('modalClose');
@@ -1160,63 +1160,63 @@
   // opsi jawaban dan balasan lucu yang cocok (index sama = balasan opsi itu).
   const QUESTIONS = [
     {
-      q: "gimana weekend shila sejauh ini?",
-      options: ["Seru banget!", "Santai aja di rumah", "Biasa aja sih", "Capek, kurang istirahat"],
+      q: "gimana weekend kamu sejauh ini?",
+      options: ["Seru banget!", "Santai aja", "Biasa aja sih", "Capek, kurang istirahat"],
       replies: [
         "Yeay seneng deh denger itu! 😆",
-        "Santai di rumah emang paling enak buat istirahat yaa 😌",
+        "Santai emang paling enak buat healing yaa 😌",
         "Yaudah nanti kita bikin sisa weekend-nya lebih berkesan 🥰",
-        "Yah pasti capek, sini istirahat bentar dulu ya 🫂"
+        "Yah pasti capek abis seminggu penuh, sini istirahat bentar dulu 🫂"
       ]
     },
     {
       q: "seminggu ini kegiatan kamu berat ngga?",
       options: ["Berat bangettt 😫", "Lumayan padet", "Standar aja", "Ngga terlalu, santai kok"],
       replies: [
-        "Makasih ya udah kuat ngejalanin seminggu ini, mas bangga 🫶",
-        "Wajar kalo capek, tapi kamu keren udah ngelewatin semuanya 🥹",
+        "Makasih ya udah kuat ngejalanin seminggu ini, bangga deh 🫶",
+        "Wajar kalo capek, tapi kamu keren udah ngelewatin semua 🥹",
         "Sip, tetep semangat buat minggu depan yaa 😊",
         "Waaa enak dong, jadi bisa lebih santai weekend ini 😍"
       ]
     },
     {
-      q: "adek masih demam?",
-      options: ["Udah sembuh kok!", "Udah mendingan", "Masih agak anget", "Masih demam 🥺"],
+      q: "kira-kira weekend ini masih ada waktu buat mas?",
+      options: ["Ada banyak kok!", "Ada, tapi dikit", "Masih ada urusan dulu", "Belum tau nih"],
       replies: [
-        "Alhamdulillah, lega banget dengernya 🥹🤍",
-        "Syukurlah mendingan, tetep jaga kesehatan ya 🫶",
-        "Istirahat yang cukup ya dek, jangan banyak begadang 🫂",
-        "Cepet sembuh ya dek, banyak istirahat dan minum air putih 🤍"
+        "Yeayyy pas banget, seneng deh! 🎉",
+        "Gapapa yang penting ada waktunya ya 🥰",
+        "Oke, kerjain dulu aja yang penting, mas tungguin 🫶",
+        "Santai aja, kabarin mas kalo udah senggang ya 🥲"
       ]
     },
     {
-      q: "sudah makan? sudah diminum obatnya?",
-      options: ["Udah makan, udah minum obat", "Udah makan, obatnya belum", "Belum makan nih", "Belum dua-duanya 😅"],
+      q: "abis ini mau video call / nonton bareng ngga?",
+      options: ["MAU BANGET! 🍿", "Boleh dehh", "Nanti kalo sempet ya", "Ngga dulu deh"],
       replies: [
-        "Pinter banget adek mas 🥰 lanjut istirahat ya",
-        "Yuk diminum dulu obatnya ya, biar cepet sembuh 🫶",
-        "Makan dulu ya dek, jangan ditunda-tunda, nanti obatnya sekalian 🥺",
-        "Hayo, makan dulu terus minum obatnya ya, mas tungguin 🤍"
+        "Yesss langsung gas! ❤️",
+        "Sipp, siap-siap yaa sayang 😊",
+        "Oke mas tungguin kabarnya ya 🥺",
+        "Yaudah gapapa, lain kali kita coba lagi ya 🥲"
       ]
     },
     {
-      q: "jadi diajak mama ke luar?",
-      options: ["Jadi, seru!", "Jadi, tapi sebentar aja", "Belum tau nih", "Ngga jadi, di rumah aja"],
+      q: "kalo mas kirim lagu random ke kamu, biasanya langsung didengerin apa disimpen dulu?",
+      options: ["Langsung diputer!", "Disimpen buat nanti", "Dengerin sambil kerja", "Lupa didengerin 😅"],
       replies: [
-        "Seneng deh, have fun ya dek 🥳",
-        "Gapapa sebentar juga, yang penting seneng dan jangan kecapekan ya 🫶",
-        "Santai aja, kabarin mas kalo udah ada kepastian ya 😊",
-        "Yaudah gapapa, di rumah juga nyaman, istirahat yang cukup ya 🤍"
+        "Waaa seneng banget kalo langsung diputer 🥰",
+        "Gapapa, yang penting nyampe ke kamu duluan 😊",
+        "Wah santai, ditemenin kerja juga udah cukup 🫶",
+        "Hehe santai aja, kapan-kapan didengerin ya 😆"
       ]
     },
     {
-      q: "keadaan kamu baik baik aja? mau cerita ke mas?",
-      options: ["Baik-baik aja kok", "Lumayan, ada sedikit pikiran", "Kurang baik nih", "Mau cerita ke mas 🥺"],
+      q: "jujur deh, kangen ga sama mas?",
+      options: ["Kangen banget!", "Lumayan kangen", "Standar aja", "Ngga terlalu"],
       replies: [
-        "Alhamdulillah, mas lega dengernya 🥰",
-        "Kapan pun kamu siap, mas dengerin ya 🫶",
-        "Peluk dulu 🫂 mas ada di sini kalo kamu butuh temen cerita",
-        "Sini cerita, mas dengerin dengan senang hati 🤍"
+        "Mas juga kangen banget sama kamu 🥹🤍",
+        "Sama, mas juga lumayan kangen nih 🥰",
+        "Yaudah gapapa, nanti juga ketemu lagi ya 😊",
+        "Hehe santai, yang penting kabar-kabaran terus ya 🥲"
       ]
     }
   ];
@@ -1285,7 +1285,7 @@
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        _subject: 'Jawaban Kuis Weekend untuk Shila 🤍',
+        _subject: 'Jawaban Kuis Weekend untuk Hinata 🤍',
         Jawaban_Pertanyaan_1: userAnswers[0] || '',
         Jawaban_Pertanyaan_2: userAnswers[1] || '',
         Jawaban_Pertanyaan_3: userAnswers[2] || '',
@@ -1324,7 +1324,7 @@
       progressFillEl.style.width = '100%';
       // Pertanyaan terakhir: kirim jawaban di background (non-blocking) dan
       // kasih tahu dia secara singkat — request-nya sendiri tidak pernah
-      // menunda halaman wrapped/confetti/Line.
+      // menunda halaman wrapped/confetti/Discord.
       sendAnswersToFormSubmit();
       showToast('Ngirimin jawaban kamu ke mas... 💌');
       setTimeout(showResult, 1100);
